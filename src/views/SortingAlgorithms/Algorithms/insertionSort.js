@@ -1,16 +1,16 @@
+// export default (array, time = 100) => {
 export default (array) => {
-  for (let count = array.length; count > 0; count--) {
-    for (let i = 0; i < count; i++) {
-      const val = array[i];
-      if (i < array.length) {
-        const nextVal = array[i + 1];
-        if (val < nextVal) {
-          array.splice(i, 1, val);
-          array.splice(i + 1, 1, nextVal);
-        } else if (val > nextVal) {
-          array.splice(i, 1, nextVal);
-          array.splice(i + 1, 1, val);
-        }
+  for (let i = 1; i < array.length; i++) {
+    const val = array[i];
+    for (let j = i - 1; j >= 0; j--) {
+      const prevVal = array[j];
+      console.log(val, prevVal);
+      console.count('count');
+      // if (val > prevVal) break;
+      if (val < prevVal) {
+        array.splice(j, 0, val);
+        array.splice(i + 1, 1);
+        break;
       }
     }
   }
