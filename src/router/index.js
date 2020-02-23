@@ -7,6 +7,10 @@ const routes = [{
   path: '/',
   name: 'Home',
   component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
+}, {
+  path: '/sorting-algorithms',
+  name: 'SortingAlgorithms',
+  component: () => import(/* webpackChunkName: "SortingAlgorithms" */ '../views/SortingAlgorithms/SortingAlgorithms.vue'),
 }];
 
 const router = new VueRouter({
