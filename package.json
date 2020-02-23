@@ -44,13 +44,12 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
+      "plugin:vue/recommended",
       "@vue/airbnb"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {},
     "overrides": [
       {
         "files": [
@@ -61,7 +60,17 @@
           "jest": true
         }
       }
-    ]
+    ],
+    "rules": {
+      "vue/eqeqeq": 1,
+      "vue/match-component-file-name": 1,
+      "vue/no-deprecated-scope-attribute": 1,
+      "vue/no-deprecated-slot-attribute": 1,
+      "vue/no-deprecated-slot-scope-attribute": 1,
+      "vue/space-unary-ops": 2,
+      "no-plusplus": 0,
+      "import/prefer-default-export": 0
+    }
   },
   "browserslist": [
     "> 1%",
