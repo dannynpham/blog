@@ -18,12 +18,12 @@
         label="Time between each sort action"
         :rules="generateTimeRules"
       />
-      <v-text-field
+      <!-- <v-text-field
         v-model="max"
         type="number"
         label="Generate up to"
         :rules="generateMaxRules"
-      />
+      /> -->
       <v-slider
         v-model="length"
         :label="`${length} elements to be sorted`"
@@ -49,7 +49,16 @@
           Shuffle!
         </v-btn>
       </div>
-      <div>{{ arr.join(', ') }}</div>
+      <div
+        class="columns"
+      >
+        <div
+          v-for="(height, idx) in arr"
+          :key="idx"
+          class="column"
+          :style="{ height: `${height}px` }"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -62,7 +71,7 @@ export default {
   name: 'SortingAlgorithms',
   data: () => ({
     arr: [],
-    max: 1000,
+    max: 450,
     length: 2,
     time: 1,
     generateTimeRules: [
@@ -114,10 +123,25 @@ export default {
   height: calc(100vh - 84px);
   .content {
     width: 70vw;
+    .v-input {
+      .v-input__slot {
+        margin: 0;
+      }
+    }
     .buttons {
       display: flex;
       justify-content: space-around;
-      padding-bottom: 30px;
+      padding-bottom: 10px;
+    }
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));
+      transform: rotate(180deg) scaleX(-1);
+      .column {
+        background-color: green;
+        border-top: 1px solid rgba(0, 0, 0, 0.3);
+        border-right: 1px solid rgba(0, 0, 0, 0.3);
+      }
     }
   }
 }
