@@ -1,40 +1,36 @@
-// export default (array, time = 100) => {
-export default (array) => {
-  for (let i = 1; i < array.length; i++) {
-    const val = array[i];
-    for (let j = i - 1; j >= 0; j--) {
-      const prevVal = array[j];
-      console.log(val, prevVal);
-      console.count('count');
-      // if (val > prevVal) break;
-      if (val < prevVal) {
-        array.splice(j, 0, val);
-        array.splice(i + 1, 1);
-        break;
+// for (let i = 1; i < array.length; i++) {
+//   const val = array[i];
+//   let insertAt = i;
+//   for (let j = i - 1; j > -1; j--) {
+//     const prevVal = array[j];
+//     if (val < prevVal) {
+//       insertAt = j;
+//     }
+//   }
+//   array.splice(i, 1);
+//   array.splice(insertAt, 0, val);
+// }
+/* eslint-disable */
+export default (array, time = 100) => {
+  let count = 1;
+  let prevCount = 0;
+  let insertAt = count;
+  const insertionSort = setInterval(() => {
+    if (count < array.length) {
+      const val = array[count];
+      const prevVal = array[prevCount];
+      if (prevVal > val) {
+        insertAt = prevCount;
+      }
+      prevCount -= 1;
+      if (prevCount === -1) {
+        array.splice(count, 1);
+        array.splice(insertAt, 0, val);
+        count += 1;
+        prevCount = count - 1;
+        insertAt = count;
       }
     }
-  }
-  // let arrCount = array.length;
-  // let count = 0;
-  // const bubbleSort = setInterval(() => {
-  //   if (count === arrCount) {
-  //     count = 0;
-  //     arrCount -= 1;
-  //   }
-  //   if (count < arrCount) {
-  //     const val = array[count];
-  //     if (count < array.length) {
-  //       const nextVal = array[count + 1];
-  //       if (val < nextVal) {
-  //         array.splice(count, 1, val);
-  //         array.splice(count + 1, 1, nextVal);
-  //       } else if (val > nextVal) {
-  //         array.splice(count, 1, nextVal);
-  //         array.splice(count + 1, 1, val);
-  //       }
-  //     }
-  //     count += 1;
-  //   }
-  //   if (arrCount === 0) clearInterval(bubbleSort);
-  // }, time);
+    if (count === array.length) clearInterval(insertionSort);
+  }, time);
 };
