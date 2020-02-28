@@ -33,12 +33,12 @@ export const data = [{
   stable: 'Yes',
   comments: '',
 }, {
-  name: 'Heap Sort',
-  value: 'heapSort',
-  best: '',
-  average: '',
-  worst: '',
+  name: 'Selection Sort',
+  value: 'selectionSort',
+  best: 'n²',
+  average: 'n²',
+  worst: 'n²',
   memory: 1,
-  stable: 'Yes',
+  stable: 'No',
   comments: '',
 }];

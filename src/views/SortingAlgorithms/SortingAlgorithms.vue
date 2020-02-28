@@ -12,22 +12,10 @@
         item-key="value"
         show-select
       />
-      <v-text-field
-        v-model="time"
-        type="number"
-        label="Time between each sort action"
-        :rules="generateTimeRules"
-      />
-      <!-- <v-text-field
-        v-model="max"
-        type="number"
-        label="Generate up to"
-        :rules="generateMaxRules"
-      /> -->
       <v-slider
         v-model="length"
         :label="`${length} elements to be sorted`"
-        min="2"
+        min="5"
         max="100"
       />
       <div class="buttons">
@@ -56,7 +44,7 @@
           v-for="(height, idx) in arr"
           :key="idx"
           class="column"
-          :style="{ height: `${height}px` }"
+          :style="{ height: `${height}%` }"
         />
       </div>
     </div>
@@ -71,17 +59,9 @@ export default {
   name: 'SortingAlgorithms',
   data: () => ({
     arr: [],
-    max: 450,
+    max: 100,
     length: 2,
-    time: 1,
-    generateTimeRules: [
-      (val) => val > 1 || 'Must be greater than 1',
-      (val) => val < 1000 || 'Must be less than 1000',
-    ],
-    generateMaxRules: [
-      (val) => val > 10 || 'Must be greater than 10',
-      (val) => val < 1000 || 'Must be less than 1000',
-    ],
+    time: 8,
     headers,
     data,
     tableSelected: [],
@@ -104,7 +84,7 @@ export default {
       if (sortingAlgorithm) this[sortingAlgorithm.value](this.arr, this.time);
     },
     generateRandomArr(max = 1000, length = 15) {
-      this.arr = Array.from({ length }).map(() => Math.floor(Math.random() * max));
+      this.arr = Array.from({ length }).map(() => Math.random() * max);
     },
     shuffle() {
       this.arr = this.arr.sort(() => Math.random() - 0.5);
@@ -122,7 +102,7 @@ export default {
   width: 100vw;
   height: calc(100vh - 84px);
   .content {
-    width: 70vw;
+    width: 80vw;
     .v-input {
       .v-input__slot {
         margin: 0;
@@ -134,6 +114,7 @@ export default {
       padding-bottom: 10px;
     }
     .columns {
+      height: calc(100vh - 256px);
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));
       transform: rotate(180deg) scaleX(-1);
